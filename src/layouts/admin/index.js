@@ -4,8 +4,9 @@ import styled from "styled-components"
 
 import BaseLayout from "Layouts/base"
 
-import { Layout, Menu as AntMenu, Icon } from "antd"
+import { Icon, Layout, Menu as AntMenu, Tabs } from "antd"
 const { Header: AntHeader, Sider: AntSider, Content } = Layout
+const { TabPane } = Tabs
 
 const AdminLayout = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false)
