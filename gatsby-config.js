@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Ant Design Starter`,
@@ -6,16 +8,32 @@ module.exports = {
   },
   plugins: [
     // PLUGINS
+    `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-styled-components`,
-    // `gatsby-plugin-offline`,
+    {
+      resolve: 'gatsby-plugin-firebase',
+      options: {
+        features: {
+          auth: false,
+          database: false,
+          firestore: true,
+          storage: false,
+          messaging: false,
+          functions: false,
+          performance: false,
+        },
+      },
+    },
     {
       resolve: `gatsby-plugin-less`,
       options: {
         javascriptEnabled: true,
         modifyVars: {
-          // 'primary-color': '#663399',
+          'primary-color': '#1890ff',
+          'secondary-color': '#b7eb8f',
+          'tertiary-color': '#b37feb',
         },
       },
     },
@@ -29,15 +47,6 @@ module.exports = {
         theme_color: `#454545`,
         display: `minimal-ui`,
         icon: `src/assets/img/manifest-icon.png`, // This path is relative to the root of the site.
-      },
-    },
-
-    // SOURCES
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: `${__dirname}/src/assets/img`,
       },
     },
 

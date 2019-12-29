@@ -1,7 +1,7 @@
-import React from "react"
+import React from 'react'
 
-import SEO from "Components/seo"
-import AdminLayout from "Layouts/admin"
+import SEO from 'Components/seo'
+import AdminLayout from 'Layouts/admin'
 
 const AdminIndexPage = () => (
   <AdminLayout>

@@ -5,7 +5,7 @@ import SEO from "Components/seo"
 
 const BaseLayout = ({ children }) => (
   <>
-    <SEO />
+    <SEO title="Gatsby AntD" />
     {children}
   </>
 )

@@ -1,29 +1,57 @@
-import React from "react"
-import { Divider, Tabs, Table, Tag } from "antd"
+import React from 'react'
+import { graphql } from 'gatsby'
 
-import AdminLayout from "Layouts/admin"
+import styled from 'styled-components'
 
-const { Column, ColumnGroup } = Table
+import {
+  Divider,
+  Icon,
+  Menu,
+  Row,
+  Col,
+  Table as AntTable,
+  Tabs,
+  Tag,
+} from 'antd'
+
+import AdminLayout from 'Layouts/admin'
+
+import 'antd/lib/style/themes/default.less'
+
+const { Column } = AntTable
 const { TabPane } = Tabs
 
-const AdminNewsPage = () => {
+const AdminNewsPage = props => {
+  const sorter = (a, b) =>
+    isNaN(a) && isNaN(b) ? (a || '').localeCompare(b || '') : a - b
+
   return (
     <AdminLayout>
       <Tabs defaultActiveKey="1">
-        <TabPane tab="Feeds" key="1">
-          <Table dataSource={data}>
-            <ColumnGroup title="Name">
-              <Column
-                title="First Name"
-                dataIndex="firstName"
-                key="firstName"
-              />
-              <Column title="Last Name" dataIndex="lastName" key="lastName" />
-            </ColumnGroup>
-            <Column title="Age" dataIndex="age" key="age" />
-            <Column title="Address" dataIndex="address" key="address" />
+        <TabPane tab="One" key="1">
+          <Table dataSource={data} rowSelection={rowSelection} rowKey="id">
+            <Column
+              title="First Name"
+              align="center"
+              dataIndex="firstName"
+              key="firstName"
+            />
+            <Column
+              title="Last Name"
+              align="center"
+              dataIndex="lastName"
+              key="lastName"
+            />
+            <Column title="Age" align="center" dataIndex="age" key="age" />
+            <Column
+              title="Address"
+              align="center"
+              dataIndex="address"
+              key="address"
+            />
             <Column
               title="Tags"
+              align="center"
               dataIndex="tags"
               key="tags"
               render={tags => (
@@ -36,12 +64,15 @@ const AdminNewsPage = () => {
                 </span>
               )}
             />
+
             <Column
               title="Action"
+              align="center"
               key="action"
+              width={150}
               render={(text, record) => (
                 <span>
-                  <a>Invite {record.lastName}</a>
+                  <a>Edit</a>
                   <Divider type="vertical" />
                   <a>Delete</a>
                 </span>
@@ -49,10 +80,20 @@ const AdminNewsPage = () => {
             />
           </Table>
         </TabPane>
-        <TabPane tab="List" key="2">
-          Content of Tab Pane 2
+        <TabPane tab="Two" key="2">
+          <Tabs defaultActiveKey="1" tabPosition="left">
+            <TabPane tab="Two-A" key="1">
+              Two A
+            </TabPane>
+            <TabPane tab="Two-B" key="2">
+              Two B
+            </TabPane>
+            <TabPane tab="Two-C" key="3">
+              Two C
+            </TabPane>
+          </Tabs>
         </TabPane>
-        <TabPane tab="Edit" key="3">
+        <TabPane tab="Three" key="3">
           Content of Tab Pane 3
         </TabPane>
       </Tabs>
@@ -60,32 +101,59 @@ const AdminNewsPage = () => {
   )
 }
 
+export default AdminNewsPage
 
+const rowSelection = {
+  onChange: (selectedRowKeys, selectedRows) => {
+    console.log(
+      `selectedRowKeys: ${selectedRowKeys}`,
+      'selectedRows: ',
+      selectedRows
+    )
+  },
+}
+
+// --- SAMPLE DATA
 const data = [
   {
     key: '1',
-    firstName: 'John',
-    lastName: 'Brown',
+    firstName: 'Ploni',
+    lastName: 'Almoni',
     age: 32,
-    address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer'],
+    address: 'Old City, Jerusalem',
+    tags: ['torah', 'mitvos'],
   },
   {
     key: '2',
-    firstName: 'Jim',
-    lastName: 'Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-    tags: ['loser'],
+    firstName: 'Plonit',
+    lastName: 'Almoni',
+    age: 28,
+    address: 'Old City, Jerusalem',
+    tags: ['chesed', 'morah'],
   },
   {
     key: '3',
-    firstName: 'Joe',
-    lastName: 'Black',
-    age: 32,
-    address: 'Sidney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
+    firstName: 'Reuven',
+    lastName: 'Yisrael',
+    age: 35,
+    address: 'Beitar Ilit',
+    tags: ['chesed', 'mitvos'],
   },
-];
+]
 
-export default AdminNewsPage
+// --- STYLES
+const Category = styled(Tag)`
+  &.ant-tag {
+    background-color: #eee;
+    border-color: #ddd;
+    border-radius: 8px;
+    color: #454545;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
+    margin: 4px 3px;
+    padding: 4px 12px;
+  }
+`
+
+const Table = styled(AntTable)``
