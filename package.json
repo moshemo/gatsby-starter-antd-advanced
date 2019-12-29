@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "gatsby-starter-antd-advanced",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "Gatsby Starter featuring Ant Design, Styled Components and a well-organized folder structure.",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Right Start Web",
   "dependencies": {
     "antd": "^3.26.3",
     "babel-plugin-import": "^1.13.0",
@@ -51,9 +51,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/moshemo/gatsby-starter-antd-advanced"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/moshemo/gatsby-starter-antd-advanced/issues"
   }
 }
